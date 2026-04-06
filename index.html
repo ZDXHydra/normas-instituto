@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Normas de Uso del Sistema</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #c41e3a 0%, #a01830 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #c41e3a 0%, #a01830 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+      border-radius: 12px 12px 0 0;
+      position: relative;
+    }
+
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2em;
+    }
+
+    .header p {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .etiqueta-nuevo {
+      position: absolute;
+      top: -5px;
+      right: 0;
+      background: #c41e3a;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.65em;
+      font-weight: 700;
+      text-transform: uppercase;
+      animation: pulse 1.5s infinite;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .section h2 {
+      color: #c41e3a;
+      margin-bottom: 15px;
+      margin-top: 0;
+      position: relative;
+      font-size: 1.3em;
+    }
+
+    .section h2.noticias {
+      color: #007bff;
+    }
+
+    .section-content {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      background: #f5f5f5;
+      font-size: 0.95em;
+      line-height: 1.6;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    #normas-content {
+      border-left: 4px solid #c41e3a;
+    }
+
+    #noticias-content {
+      border-left: 4px solid #007bff;
+    }
+
+    .loading {
+      text-align: center;
+      color: #999;
+      padding: 20px;
+    }
+
+    .footer {
+      padding: 20px 25px;
+      border-top: 2px solid #ddd;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .checkbox-container input {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-container label {
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .btn-continue {
+      padding: 12px 40px;
+      background: #ccc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: not-allowed;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-continue:not(:disabled) {
+      background: #28a745;
+      cursor: pointer;
+    }
+
+    .btn-continue:not(:disabled):hover {
+      background: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+    }
+
+    .btn-continue:not(:disabled):active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1200px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .modal {
+        width: 95%;
+      }
+
+      .header h1 {
+        font-size: 1.5em;
+      }
+
+      .content-wrapper {
+        padding: 20px;
+        gap: 15px;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-continue {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="modal">
+    <div class="header">
+      <h1>⚠️ Normas de Uso del Sistema</h1>
+      <p>Debe leer y aceptar para continuar</p>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="section">
+        <h2>📋 Normas</h2>
+        <div id="normas-content" class="section-content">
+          <div class="loading">⏳ Cargando...</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="noticias">📰 Noticias</h2>
+        <div id="noticias-content" class="section-content">
+          <div class="loading">⏳ Cargando...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <label class="checkbox-container">
+        <input type="checkbox" id="accept-checkbox">
+        <label for="accept-checkbox" style="margin: 0; cursor: pointer;">Acepto las normas de uso del sistema</label>
+      </label>
+      <button class="btn-continue" id="continue-btn" disabled>Continuar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
