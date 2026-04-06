@@ -5,16 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Normas de Uso del Sistema</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+      width: 100%; height: 100%; overflow: hidden;
     }
 
     body {
@@ -33,67 +27,35 @@
       width: 90%;
       max-height: 85vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
-      animation: slideUp 0.5s ease-out;
+      animation: slideUp 0.4s ease-out;
     }
 
     @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.8;
-        transform: scale(1.05);
-      }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.8; transform: scale(1.05); }
     }
 
+    /* ── Header ─────────────────────────────────────────── */
     .header {
       background: linear-gradient(135deg, #c41e3a 0%, #a01830 100%);
       color: white;
-      padding: 30px;
+      padding: 28px 30px;
       text-align: center;
       border-radius: 12px 12px 0 0;
-      position: relative;
     }
 
-    .header h1 {
-      margin: 0 0 10px 0;
-      font-size: 2em;
-    }
+    .header h1 { font-size: 1.9em; margin-bottom: 8px; }
+    .header p  { opacity: 0.9; font-size: 0.95em; }
 
-    .header p {
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    .etiqueta-nuevo {
-      position: absolute;
-      top: -5px;
-      right: 0;
-      background: #c41e3a;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-size: 0.65em;
-      font-weight: 700;
-      text-transform: uppercase;
-      animation: pulse 1.5s infinite;
-    }
-
+    /* ── Contenido ──────────────────────────────────────── */
     .content-wrapper {
       flex: 1;
       display: grid;
@@ -104,15 +66,25 @@
     }
 
     .section h2 {
-      color: #c41e3a;
-      margin-bottom: 15px;
-      margin-top: 0;
+      font-size: 1.2em;
+      margin-bottom: 12px;
       position: relative;
-      font-size: 1.3em;
     }
 
-    .section h2.noticias {
-      color: #007bff;
+    .section h2.normas   { color: #c41e3a; }
+    .section h2.noticias { color: #007bff; }
+
+    .etiqueta-nuevo {
+      position: absolute;
+      top: 0; right: 0;
+      background: #c41e3a;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.6em;
+      font-weight: 700;
+      text-transform: uppercase;
+      animation: pulse 1.5s infinite;
     }
 
     .section-content {
@@ -120,28 +92,75 @@
       border-radius: 8px;
       padding: 15px;
       background: #f5f5f5;
-      font-size: 0.95em;
-      line-height: 1.6;
+      font-size: 0.92em;
+      line-height: 1.65;
       max-height: 300px;
       overflow-y: auto;
     }
 
-    #normas-content {
-      border-left: 4px solid #c41e3a;
-    }
+    #normas-content   { border-left: 4px solid #c41e3a; }
+    #noticias-content { border-left: 4px solid #007bff; }
 
-    #noticias-content {
-      border-left: 4px solid #007bff;
-    }
-
-    .loading {
+    /* ── Estados de carga / error ───────────────────────── */
+    .estado {
       text-align: center;
-      color: #999;
-      padding: 20px;
+      padding: 20px 10px;
+      font-size: 0.9em;
     }
 
+    .estado.cargando { color: #999; }
+
+    .estado.error {
+      color: #c41e3a;
+      background: #fff0f0;
+      border-radius: 6px;
+    }
+
+    .estado.error button {
+      margin-top: 10px;
+      padding: 6px 16px;
+      background: #c41e3a;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    .estado.error button:hover { background: #a01830; }
+
+    /* Spinner animado */
+    .spinner {
+      display: inline-block;
+      width: 22px; height: 22px;
+      border: 3px solid #ddd;
+      border-top-color: #c41e3a;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Noticia card ───────────────────────────────────── */
+    .noticia-card {
+      background: white;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border-left: 3px solid #007bff;
+      position: relative;
+    }
+
+    .noticia-fecha    { font-size: 0.82em; color: #888; margin-bottom: 4px; }
+    .noticia-titulo   { font-weight: 700; color: #c41e3a; margin-bottom: 5px; }
+    .noticia-contenido{ font-size: 0.9em; color: #333; }
+
+    /* ── Footer ─────────────────────────────────────────── */
     .footer {
-      padding: 20px 25px;
+      padding: 18px 25px;
       border-top: 2px solid #ddd;
       background: #f5f5f5;
       display: flex;
@@ -154,294 +173,239 @@
     .checkbox-container {
       display: flex;
       align-items: center;
+      gap: 10px;
       cursor: pointer;
       user-select: none;
       flex: 1;
-      min-width: 250px;
+      min-width: 220px;
     }
 
     .checkbox-container input {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-      cursor: pointer;
+      width: 20px; height: 20px; cursor: pointer;
+      accent-color: #28a745;
     }
 
     .checkbox-container label {
-      font-weight: 500;
-      color: #333;
-      cursor: pointer;
+      font-weight: 500; cursor: pointer;
     }
 
     .btn-continue {
-      padding: 12px 40px;
+      padding: 12px 36px;
       background: #ccc;
       color: white;
       border: none;
       border-radius: 6px;
       font-size: 1em;
-      font-weight: 600;
+      font-weight: 700;
       cursor: not-allowed;
-      transition: all 0.3s ease;
       text-transform: uppercase;
+      transition: background 0.25s, transform 0.15s, box-shadow 0.15s;
     }
 
-    .btn-continue:not(:disabled) {
+    .btn-continue.activo {
       background: #28a745;
       cursor: pointer;
     }
 
-    .btn-continue:not(:disabled):hover {
+    .btn-continue.activo:hover {
       background: #218838;
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+      box-shadow: 0 6px 14px rgba(40,167,69,0.35);
     }
 
-    .btn-continue:not(:disabled):active {
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1200px) {
-      .content-wrapper {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .modal {
-        width: 95%;
-      }
-
-      .header h1 {
-        font-size: 1.5em;
-      }
-
-      .content-wrapper {
-        padding: 20px;
-        gap: 15px;
-      }
-
-      .footer {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn-continue {
-        width: 100%;
-      }
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .content-wrapper { grid-template-columns: 1fr; }
+      .header h1 { font-size: 1.4em; }
+      .footer { flex-direction: column; align-items: stretch; }
+      .btn-continue { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <div class="modal">
-    <div class="header">
-      <h1>⚠️ Normas de Uso del Sistema</h1>
-      <p>Debe leer y aceptar para continuar</p>
-    </div>
+<div class="modal">
 
-    <div class="content-wrapper">
-      <div class="section">
-        <h2>📋 Normas</h2>
-        <div id="normas-content" class="section-content">
-          <div class="loading">⏳ Cargando...</div>
-        </div>
-      </div>
+  <div class="header">
+    <h1>⚠️ Normas de Uso del Sistema</h1>
+    <p>Debe leer y aceptar las normas para continuar</p>
+  </div>
 
-      <div class="section">
-        <h2 class="noticias">📰 Noticias</h2>
-        <div id="noticias-content" class="section-content">
-          <div class="loading">⏳ Cargando...</div>
+  <div class="content-wrapper">
+    <div class="section">
+      <h2 class="normas">📋 Normas</h2>
+      <div id="normas-content" class="section-content">
+        <div class="estado cargando">
+          <div class="spinner"></div><br>Cargando normas…
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      <label class="checkbox-container">
-        <input type="checkbox" id="accept-checkbox">
-        <label for="accept-checkbox" style="margin: 0; cursor: pointer;">Acepto las normas de uso del sistema</label>
-      </label>
-      <button class="btn-continue" id="continue-btn" disabled>Continuar</button>
+    <div class="section">
+      <h2 class="noticias">📰 Noticias</h2>
+      <div id="noticias-content" class="section-content">
+        <div class="estado cargando">
+          <div class="spinner"></div><br>Cargando noticias…
+        </div>
+      </div>
     </div>
   </div>
 
-  <script>
-    const checkbox = document.getElementById('accept-checkbox');
-    const continueBtn = document.getElementById('continue-btn');
-    const normasContent = document.getElementById('normas-content');
-    const noticiasContent = document.getElementById('noticias-content');
+  <div class="footer">
+    <label class="checkbox-container">
+      <input type="checkbox" id="accept-checkbox">
+      <label for="accept-checkbox">Acepto las normas de uso del sistema</label>
+    </label>
+    <button class="btn-continue" id="continue-btn" disabled>Continuar</button>
+  </div>
 
-    // Cambio del checkbox
-    checkbox.addEventListener('change', () => {
-      continueBtn.disabled = !checkbox.checked;
-      continueBtn.style.background = checkbox.checked ? '#28a745' : '#ccc';
-    });
+</div>
 
-    // Click en continuar
-    continueBtn.addEventListener('click', () => {
-      if (checkbox.checked) {
-        console.log('[GitHub Pages] Usuario aceptó las normas');
-        
-        // Guardar en localStorage
-        localStorage.setItem('normasAceptadas', JSON.stringify({
-          aceptadas: true,
-          fecha: new Date().toISOString()
-        }));
+<script>
+  /* ─── Configuración ─────────────────────────────────────────── */
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw3SZWBXDkdCveM6bExvJp0rPIUyfZMjT6tU2mPUi16iBZdvja77MtH_D29rqSlsxb/exec';
+  const TIMEOUT_MS = 8000; // 8 segundos antes de mostrar error
 
-        // Notificar a la extensión (si está instalada)
-        try {
-          chrome.runtime.sendMessage({ action: 'aceptarNormas' }, (response) => {
-            console.log('[GitHub Pages] Notificación enviada a la extensión');
-          });
-        } catch (e) {
-          console.log('[GitHub Pages] Extensión no disponible (modo normal)');
-        }
+  /* ─── Referencias DOM ───────────────────────────────────────── */
+  const checkbox     = document.getElementById('accept-checkbox');
+  const continueBtn  = document.getElementById('continue-btn');
+  const normasEl     = document.getElementById('normas-content');
+  const noticiasEl   = document.getElementById('noticias-content');
 
-        // Esperar un poco y luego redirigir
-        setTimeout(() => {
-          window.location.href = 'https://www.google.com';
-        }, 500);
-      }
-    });
+  /* ─── Checkbox ──────────────────────────────────────────────── */
+  checkbox.addEventListener('change', () => {
+    continueBtn.disabled = !checkbox.checked;
+    continueBtn.classList.toggle('activo', checkbox.checked);
+  });
 
-    // Cargar contenido
-    async function cargarContenido() {
-      const normasUrl = 'https://script.google.com/macros/s/AKfycbyw3SZWBXDkdCveM6bExvJp0rPIUyfZMjT6tU2mPUi16iBZdvja77MtH_D29rqSlsxb/exec?type=normas';
-      const noticiasUrl = 'https://script.google.com/macros/s/AKfycbyw3SZWBXDkdCveM6bExvJp0rPIUyfZMjT6tU2mPUi16iBZdvja77MtH_D29rqSlsxb/exec?type=noticias';
+  /* ─── Continuar ─────────────────────────────────────────────── */
+  continueBtn.addEventListener('click', () => {
+    if (!checkbox.checked) return;
 
+    localStorage.setItem('normasAceptadas', 'true');
+
+    // Notificar a la extensión de Chrome si está instalada
+    if (typeof chrome !== 'undefined' && chrome.runtime?.sendMessage) {
       try {
-        console.log('[GitHub Pages] Cargando normas...');
-        const normasResponse = await fetch(normasUrl);
-        const normasData = await normasResponse.json();
-        
-        if (normasData.normas) {
-          normasContent.innerHTML = sanitizeHTML(normasData.normas);
-          
-          // Verificar si las normas son nuevas
-          const normasActualizadas = normasData.lastUpdated || new Date().toISOString();
-          const esNuevo = esContenidoNuevo('normas', normasActualizadas);
-          
-          if (esNuevo) {
-            const h2 = document.querySelector('h2:not(.noticias)');
-            if (h2) {
-              const etiqueta = document.createElement('span');
-              etiqueta.className = 'etiqueta-nuevo';
-              etiqueta.style.cssText = `
-                position: absolute;
-                top: -5px;
-                right: 0;
-                background: #c41e3a;
-                color: white;
-                padding: 4px 12px;
-                border-radius: 4px;
-                font-size: 0.65em;
-                font-weight: 700;
-                text-transform: uppercase;
-              `;
-              etiqueta.textContent = 'Nuevo';
-              h2.style.position = 'relative';
-              h2.appendChild(etiqueta);
-            }
-          }
-          
-          console.log('[GitHub Pages] Normas cargadas correctamente');
-        }
-      } catch (error) {
-        console.error('[GitHub Pages] Error cargando normas:', error);
-        normasContent.innerHTML = '<p style="color: #c41e3a;">Error al cargar normas</p>';
-      }
-
-      try {
-        console.log('[GitHub Pages] Cargando noticias...');
-        const noticiasResponse = await fetch(noticiasUrl);
-        const noticiasData = await noticiasResponse.json();
-        
-        if (noticiasData.noticias && noticiasData.noticias.length > 0) {
-          // Detectar noticias nuevas
-          const noticiasConEstado = noticiasData.noticias.map(noticia => {
-            const esNuevo = esContenidoNuevo('noticia_' + noticia.fecha + '_' + noticia.titulo, noticia.fecha);
-            return { ...noticia, esNuevo };
-          });
-
-          noticiasContent.innerHTML = noticiasConEstado
-            .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-            .map((noticia) => `
-              <div style="
-                background: white; 
-                padding: 12px; 
-                margin-bottom: 10px; 
-                border-radius: 6px; 
-                border-left: 3px solid #007bff;
-                position: relative;
-              ">
-                ${noticia.esNuevo ? `
-                  <span style="
-                    position: absolute;
-                    top: 5px;
-                    right: 8px;
-                    background: #c41e3a;
-                    color: white;
-                    padding: 3px 8px;
-                    border-radius: 3px;
-                    font-size: 0.7em;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                  ">Nuevo</span>
-                ` : ''}
-                <div style="font-size: 0.85em; color: #666; margin-bottom: 5px; margin-top: ${noticia.esNuevo ? '20px' : '0'};">${new Date(noticia.fecha).toLocaleDateString('es-ES')}</div>
-                <div style="font-weight: 600; color: #c41e3a; margin-bottom: 5px;">${sanitizeHTML(noticia.titulo)}</div>
-                <div style="font-size: 0.9em; color: #333;">${sanitizeHTML(noticia.contenido)}</div>
-              </div>
-            `).join('');
-          
-          console.log('[GitHub Pages] Noticias cargadas correctamente');
-        }
-      } catch (error) {
-        console.error('[GitHub Pages] Error cargando noticias:', error);
-        noticiasContent.innerHTML = '<p style="color: #666;">Error al cargar noticias</p>';
-      }
+        chrome.runtime.sendMessage({ action: 'aceptarNormas' });
+      } catch (_) { /* extensión no disponible */ }
     }
 
-    // Función para detectar si el contenido es nuevo (menos de 7 días)
-    function esContenidoNuevo(clave, fecha) {
-      try {
-        const ahora = new Date().getTime();
-        const fechaContenido = new Date(fecha).getTime();
-        const diasTranscurridos = (ahora - fechaContenido) / (1000 * 60 * 60 * 24);
-        
-        console.log('[GitHub Pages] Verificando', clave, '- Días transcurridos:', diasTranscurridos.toFixed(2));
-        
-        // Si pasaron menos de 7 días, es nuevo
-        if (diasTranscurridos < 7) {
-          // Verificar si ya lo hemos marcado como visto
-          const cacheKey = 'contenido_nuevo_' + clave;
-          const estaEnCache = localStorage.getItem(cacheKey);
-          
-          if (!estaEnCache) {
-            // Marcarlo como visto
-            localStorage.setItem(cacheKey, JSON.stringify({
-              fecha: fecha,
-              marcadoEn: new Date().toISOString()
-            }));
-            console.log('[GitHub Pages]', clave, 'marcado como NUEVO');
-            return true;
-          }
-          
-          return false;
-        }
-        
-        // Limpiar del cache si ya pasaron 7 días
-        localStorage.removeItem('contenido_nuevo_' + clave);
-        return false;
-      } catch (error) {
-        console.error('[GitHub Pages] Error verificando si es nuevo:', error);
-        return false;
-      }
-    }
+    setTimeout(() => { window.location.href = 'https://www.google.com'; }, 300);
+  });
 
-    function sanitizeHTML(html) {
-      const div = document.createElement('div');
-      div.textContent = html;
-      let text = div.innerHTML;
-      
-      text = text
-        .replace(/&lt;br\/?`*
+  /* ─── Fetch con timeout ─────────────────────────────────────── */
+  function fetchConTimeout(url, ms) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    return fetch(url, { signal: controller.signal })
+      .finally(() => clearTimeout(timer));
+  }
+
+  /* ─── Mostrar error con botón de reintento ──────────────────── */
+  function mostrarError(el, mensaje, reintentar) {
+    el.innerHTML = `
+      <div class="estado error">
+        ⚠️ ${mensaje}
+        <br>
+        <button onclick="(${reintentar.toString()})()">🔄 Reintentar</button>
+      </div>`;
+  }
+
+  /* ─── ¿Contenido nuevo? (menos de 7 días) ───────────────────── */
+  function esNuevo(clave, fechaISO) {
+    try {
+      const dias = (Date.now() - new Date(fechaISO).getTime()) / 86400000;
+      if (dias >= 7) { localStorage.removeItem('visto_' + clave); return false; }
+      if (localStorage.getItem('visto_' + clave)) return false;
+      localStorage.setItem('visto_' + clave, '1');
+      return true;
+    } catch { return false; }
+  }
+
+  /* ─── Sanitizar HTML permitido ──────────────────────────────── */
+  function sanitize(html) {
+    const div = document.createElement('div');
+    div.textContent = html;
+    return div.innerHTML
+      .replace(/&lt;(\/?(br|p|strong|em|ul|ol|li|h3|h4))&gt;/g, '<$1>');
+  }
+
+  /* ─── Cargar normas ─────────────────────────────────────────── */
+  async function cargarNormas() {
+    normasEl.innerHTML = `<div class="estado cargando"><div class="spinner"></div><br>Cargando normas…</div>`;
+    try {
+      const res  = await fetchConTimeout(APPS_SCRIPT_URL + '?type=normas', TIMEOUT_MS);
+
+      // Google Apps Script a veces devuelve HTML de error en vez de JSON
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); }
+      catch {
+        console.error('[Normas] La respuesta no es JSON:', text.slice(0, 200));
+        throw new Error('El servidor no devolvió JSON válido. Comprueba que el Apps Script está publicado como "Cualquier persona".');
+      }
+
+      if (!data.normas) throw new Error('El campo "normas" no existe en la respuesta.');
+
+      const nuevo = esNuevo('normas', data.lastUpdated || new Date().toISOString());
+      const h2    = document.querySelector('h2.normas');
+      if (nuevo && h2) {
+        const badge = document.createElement('span');
+        badge.className = 'etiqueta-nuevo';
+        badge.textContent = 'Nuevo';
+        h2.appendChild(badge);
+      }
+
+      normasEl.innerHTML = sanitize(data.normas);
+
+    } catch (err) {
+      console.error('[Normas] Error normas:', err.message);
+      mostrarError(normasEl, 'No se pudieron cargar las normas.<br><small>' + err.message + '</small>', cargarNormas);
+    }
+  }
+
+  /* ─── Cargar noticias ───────────────────────────────────────── */
+  async function cargarNoticias() {
+    noticiasEl.innerHTML = `<div class="estado cargando"><div class="spinner"></div><br>Cargando noticias…</div>`;
+    try {
+      const res  = await fetchConTimeout(APPS_SCRIPT_URL + '?type=noticias', TIMEOUT_MS);
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); }
+      catch {
+        console.error('[Noticias] La respuesta no es JSON:', text.slice(0, 200));
+        throw new Error('El servidor no devolvió JSON válido.');
+      }
+
+      const lista = data.noticias;
+      if (!Array.isArray(lista) || lista.length === 0) {
+        noticiasEl.innerHTML = '<div class="estado cargando">📭 No hay noticias por el momento.</div>';
+        return;
+      }
+
+      lista.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+      noticiasEl.innerHTML = lista.map(n => {
+        const nuevo  = esNuevo('noticia_' + n.fecha + '_' + n.titulo, n.fecha);
+        const fecha  = new Date(n.fecha).toLocaleDateString('es-ES');
+        return `
+          <div class="noticia-card">
+            ${nuevo ? '<span class="etiqueta-nuevo" style="background:#007bff">Nuevo</span>' : ''}
+            <div class="noticia-fecha">${fecha}</div>
+            <div class="noticia-titulo">${sanitize(n.titulo)}</div>
+            <div class="noticia-contenido">${sanitize(n.contenido)}</div>
+          </div>`;
+      }).join('');
+
+    } catch (err) {
+      console.error('[Noticias] Error noticias:', err.message);
+      mostrarError(noticiasEl, 'No se pudieron cargar las noticias.', cargarNoticias);
+    }
+  }
+
+  /* ─── Arrancar ──────────────────────────────────────────────── */
+  cargarNormas();
+  cargarNoticias();
+</script>
+</body>
+</html>
